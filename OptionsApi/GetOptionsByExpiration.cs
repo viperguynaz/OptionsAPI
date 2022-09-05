@@ -4,7 +4,6 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Net.Http;
 using System.Net;
 using System.Text;
@@ -32,7 +31,6 @@ namespace OptionStrikes
 
             log.LogInformation($"request for Ticker: {ticker} | Expiration: {expiration}");
 
-            //var optionsResponse = await client.GetStringAsync(url);
             var optionsResponse = await client.GetFromJsonAsync<YahooResponse>(url);
 
             return new HttpResponseMessage(HttpStatusCode.OK)
