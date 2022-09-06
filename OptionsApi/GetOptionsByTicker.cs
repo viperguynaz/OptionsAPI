@@ -12,14 +12,14 @@ using YahooOptions;
 
 namespace OptionStrikes
 {
-    public static class GetOptionsByExpiration
+    public static class GetOptionsByTicker
     {
         private const string urlBase = "https://query1.finance.yahoo.com/v7/finance/options/";
         private static readonly HttpClient client = new HttpClient();
 
         [FunctionName("GetOptionsByExpiration")]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "{ticker:alpha:required}/{expiration:long?}")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetOptionsByTicker/{ticker:alpha:required}/{expiration:long?}")] HttpRequest req,
             string ticker,
             long? expiration,
             ILogger log)
