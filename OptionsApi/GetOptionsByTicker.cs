@@ -17,7 +17,7 @@ namespace OptionsApi
         private const string urlBase = "https://query1.finance.yahoo.com/v7/finance/options/";
         private static readonly HttpClient client = new HttpClient();
 
-        [FunctionName("GetOptionsByExpiration")]
+        [FunctionName("GetOptionsByTicker")]
         public static async Task<HttpResponseMessage> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "GetOptionsByTicker/{ticker:alpha:required}/{expiration:long?}")] HttpRequest req,
             string ticker,
