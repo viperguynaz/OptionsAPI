@@ -11,16 +11,14 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Net;
-using YahooOptions;
+using OptionsApi;
 
-namespace StrikesApi
+namespace OptionsApi
 {
     public static class GetStrikesByTicker
     {
-        private const string urlBaseYahoo = "https://query1.finance.yahoo.com/v7/finance/options/";
-        private const string urlBaseViper = "https://viperoptions.azurewebsites.net/api/";
+        private const string urlBase = "https://query1.finance.yahoo.com/v7/finance/options/";
         private static readonly HttpClient client = new HttpClient();
-        private static long expiration;
         private const int numTicks = 25;
 
         [FunctionName("GetStrikesByTicker")]
@@ -33,7 +31,7 @@ namespace StrikesApi
             log.LogInformation($"request for Ticker: {ticker} | Ticks: {ticks}");
 
             if (!ticks.HasValue) ticks = 6;
-            var url = $"{urlBaseViper}/{ticker}";
+            var url = $"{urlBase}/{ticker}";
 
             var optionsResponse = await client.GetFromJsonAsync<YahooResponse>(url);
             var options = new List<YahooResponse>();
@@ -43,7 +41,7 @@ namespace StrikesApi
 
             for (int i = 1; i < ticks; i++)
             {
-                optionsResponse = await client.GetFromJsonAsync<YahooResponse>($"{url}/{expirations[i]}");
+                optionsResponse = await client.GetFromJsonAsync<YahooResponse>($"{url}?date={expirations[i]}");
                 options.Add(optionsResponse);
             }
 

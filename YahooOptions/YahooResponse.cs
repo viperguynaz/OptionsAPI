@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace YahooOptions;
+namespace OptionsApi;
 public class YahooResponse
 {
     [JsonPropertyName("optionChain")]

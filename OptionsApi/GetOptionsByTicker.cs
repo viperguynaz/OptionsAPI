@@ -8,9 +8,9 @@ using System.Net.Http;
 using System.Net;
 using System.Text;
 using System.Net.Http.Json;
-using YahooOptions;
+using OptionsApi;
 
-namespace OptionStrikes
+namespace OptionsApi
 {
     public static class GetOptionsByTicker
     {
