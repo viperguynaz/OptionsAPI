@@ -17,7 +17,8 @@ namespace StrikesApi
 {
     public static class GetStrikesByTicker
     {
-        private const string urlBase = "https://query1.finance.yahoo.com/v7/finance/options/";
+        private const string urlBaseYahoo = "https://query1.finance.yahoo.com/v7/finance/options/";
+        private const string urlBaseViper = "https://viperoptions.azurewebsites.net/api/";
         private static readonly HttpClient client = new HttpClient();
         private static long expiration;
         private const int numTicks = 25;
@@ -32,7 +33,7 @@ namespace StrikesApi
             log.LogInformation($"request for Ticker: {ticker} | Ticks: {ticks}");
 
             if (!ticks.HasValue) ticks = 6;
-            var url = $"{urlBase}{ticker}";
+            var url = $"{urlBaseViper}/{ticker}";
 
             var optionsResponse = await client.GetFromJsonAsync<YahooResponse>(url);
             var options = new List<YahooResponse>();
@@ -54,19 +55,21 @@ namespace StrikesApi
                 for (int y = 0; y < ticks; y++)
                 {
                     // refactor as dynamic for ticks
-                    csv.AppendFormat("{0,0}", options[y].OptionChain.Result[0].Options[0].Calls.Where(c => c.Strike == x).FirstOrDefault());
+                    var oi = options[y].OptionChain.Result[0].Options[0].Calls.Where(c => c.Strike == x).FirstOrDefault()?.OpenInterest ?? 0;
+                    csv.AppendFormat(",{0,0}", oi);
                 }
                 for (int y = 0; y < ticks; y++)
                 {
                     // refactor as dynamic for ticks
-                    csv.AppendFormat("{0,0}", options[y].OptionChain.Result[0].Options[0].Puts.Where(p => p.Strike == x).FirstOrDefault());
+                    var oi = -options[y].OptionChain.Result[0].Options[0].Puts.Where(p => p.Strike == x).FirstOrDefault()?.OpenInterest ?? 0;
+                    csv.AppendFormat(",{0,0}", oi);
                 }
                 csv.AppendLine();
             }
 
             return new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(csv.ToString(), Encoding.UTF8, "application/json")
+                Content = new StringContent(csv.ToString(), Encoding.UTF8, "text/csv")
             };
         }
     }
