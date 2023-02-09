@@ -1,4 +1,6 @@
 using System.Net;
+using System.Net.Http.Json;
+using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -9,7 +11,7 @@ namespace OptionsApi
     {
         private readonly ILogger _logger; 
         private const string urlBase = "https://query1.finance.yahoo.com/v7/finance/options/";
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient client = new();
 
         public GetOptionsByTicker(ILoggerFactory loggerFactory)
         {
@@ -17,7 +19,7 @@ namespace OptionsApi
         }
 
         [Function("GetOptionsByTicker")]
-        public HttpResponseData Run(
+        public async Task<HttpResponseData> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "GetOptionsByTicker/{ticker:alpha:required}/{expiration:long?}")] HttpRequestData req,
             string ticker,
             long? expiration)
@@ -29,7 +31,7 @@ namespace OptionsApi
 
             _logger.LogInformation($"request for Ticker: {ticker} | Expiration: {expiration}");
 
-            //var optionsResponse = await client.GetFromJsonAsync<YahooResponse>(url);
+            var optionsResponse = await client.GetFromJsonAsync<YahooResponse>(url);
 
             //return new HttpResponseMessage(HttpStatusCode.OK)
             //{
@@ -37,9 +39,9 @@ namespace OptionsApi
             //};
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
+            response.Headers.Add("Content-Type", "application/json; charset=utf-8");
 
-            response.WriteString("Welcome to Azure Functions!");
+            response.WriteString(JsonSerializer.Serialize(optionsResponse));
 
             return response;
         }
