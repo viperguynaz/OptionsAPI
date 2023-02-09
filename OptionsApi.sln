@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionsApi", "OptionsApi\OptionsApi.csproj", "{AA912C0B-2C09-43E7-800B-89D3E912541C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YahooOptions", "YahooOptions\YahooOptions.csproj", "{A0F66749-360A-472F-A9F2-4E292A69D717}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionsData", "OptionsData\OptionsData.csproj", "{A96E864E-599A-4717-8662-4579F1FD53BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{AA912C0B-2C09-43E7-800B-89D3E912541C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA912C0B-2C09-43E7-800B-89D3E912541C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA912C0B-2C09-43E7-800B-89D3E912541C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0F66749-360A-472F-A9F2-4E292A69D717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0F66749-360A-472F-A9F2-4E292A69D717}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0F66749-360A-472F-A9F2-4E292A69D717}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0F66749-360A-472F-A9F2-4E292A69D717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A96E864E-599A-4717-8662-4579F1FD53BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A96E864E-599A-4717-8662-4579F1FD53BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A96E864E-599A-4717-8662-4579F1FD53BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A96E864E-599A-4717-8662-4579F1FD53BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
