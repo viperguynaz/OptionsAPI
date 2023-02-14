@@ -28,10 +28,9 @@ namespace OptionsApi
             [HttpTrigger(AuthorizationLevel.Anonymous,
             "get",
             Route = "GetGreeksByTicker/{ticker:alpha:required}")] HttpRequestData req,
-            string ticker,
-            string expiration)
+            string ticker)
         {
-            _logger.LogInformation($"request for Ticker: {ticker} | Expiration: {expiration}");
+            _logger.LogInformation($"request for Ticker: {ticker}");
             var url = $"{urlBase}/options/{ticker}.US?api_token={apiKey}&fmt=json";
 
             var greeksResponse = await client.GetFromJsonAsync<EodOptionsResponse>(url);
