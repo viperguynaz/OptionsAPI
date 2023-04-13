@@ -25,6 +25,5 @@ using (var csv = new CsvReader(reader, config))
     }
 }
 
-//Console.WriteLine("Press enter to quit");
-//Console.ReadLine();
+
 
