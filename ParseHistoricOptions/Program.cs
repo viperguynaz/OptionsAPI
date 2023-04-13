@@ -6,7 +6,7 @@ using CsvHelper.Configuration;
 Console.WriteLine("Processing Historic Option Data...");
 
 var directoryPath = "D:\\Documents\\OptionsData\\QQQ-History";
-var fileName = "QQQ_schema.csv";
+var fileName = "QQQ_2018.csv";
 
 var config = new CsvConfiguration(CultureInfo.InvariantCulture)
 {

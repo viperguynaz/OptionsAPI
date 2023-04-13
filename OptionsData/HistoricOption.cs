@@ -34,7 +34,7 @@ public class HistoricOption
     public DateTime QuoteDate { get; set; }
     
     [Name("strike")]
-    public int Strike { get; set; }
+    public double Strike { get; set; }
     
     [Name("last")]
     public double Last { get; set; }
@@ -55,22 +55,22 @@ public class HistoricOption
     public double Impliedvol { get; set; }
     
     [Name("delta")]
-    public int Delta { get; set; }
+    public double Delta { get; set; }
     
     [Name("gamma")]
-    public int Gamma { get; set; }
+    public double Gamma { get; set; }
     
     [Name("theta")]
     public double Theta { get; set; }
     
     [Name("vega")]
-    public int Vega { get; set; }
+    public double Vega { get; set; }
     
     [Name("optionalias")]
     public string OptionAlias { get; set; } = string.Empty;
     
     [Name("IVBid")]
-    public int IVBid { get; set; }
+    public double IVBid { get; set; }
     
     [Name("IVAsk")]
     public double IVAsk { get; set; }
