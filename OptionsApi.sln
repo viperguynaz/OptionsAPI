@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionsApi", "OptionsApi\Op
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionsData", "OptionsData\OptionsData.csproj", "{A96E864E-599A-4717-8662-4579F1FD53BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseHistoricOptions", "ParseHistoricOptions\ParseHistoricOptions.csproj", "{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A96E864E-599A-4717-8662-4579F1FD53BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A96E864E-599A-4717-8662-4579F1FD53BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A96E864E-599A-4717-8662-4579F1FD53BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
