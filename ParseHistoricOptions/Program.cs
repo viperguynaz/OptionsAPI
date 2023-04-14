@@ -44,20 +44,23 @@ using (var csv = new CsvReader(reader, config))
             }
         }
 
-        // write list to blob
-        string blobName = $"QQQ-2018-{blockCount}.csv";
-        Console.WriteLine($"Writing bloBlock {blockCount} ...");
+        if (blockCount > 1511)
+        {
+            // write list to blob
+            string blobName = $"QQQ-2018-{blockCount}.csv";
+            Console.WriteLine($"Writing bloBlock {blockCount} ...");
 
-        // Get a reference to a blob: blobName in container: containerName
-        BlobClient blob = container.GetBlobClient($"QQQ-2018-{blockCount}.csv");
+            // Get a reference to a blob: blobName in container: containerName
+            BlobClient blob = container.GetBlobClient($"QQQ-2018-{blockCount}.csv");
 
-        using var writer = new StreamWriter(new MemoryStream());
-        using var csvout = new CsvWriter(writer, CultureInfo.InvariantCulture);
-        csvout.WriteRecords(optionList);
-        writer.Flush();
-        writer.BaseStream.Seek(0, SeekOrigin.Begin);
-        await blob.UploadAsync(writer.BaseStream, true);
-        Console.WriteLine($"Block {blockCount} saved.");
+            using var writer = new StreamWriter(new MemoryStream());
+            using var csvout = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            csvout.WriteRecords(optionList);
+            writer.Flush();
+            writer.BaseStream.Seek(0, SeekOrigin.Begin);
+            await blob.UploadAsync(writer.BaseStream, true);
+            Console.WriteLine($"Block {blockCount} saved.");
+        }
         blockCount++;
     }
 }
