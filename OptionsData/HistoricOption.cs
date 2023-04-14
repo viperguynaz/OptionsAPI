@@ -25,10 +25,10 @@ public class HistoricOption
     public string OptionExt { get; set; } = string.Empty;
     
     [Name("type")]
-    public string Type { get; set; } = string.Empty;
+    public string ContractType { get; set; } = string.Empty;
     
     [Name("expiration")]
-    public DateTime Expiration { get; set; }
+    public DateTime ExpirationDate { get; set; }
     
     [Name("quotedate")]
     public DateTime QuoteDate { get; set; }
@@ -37,7 +37,7 @@ public class HistoricOption
     public double Strike { get; set; }
     
     [Name("last")]
-    public double Last { get; set; }
+    public double LastPrice { get; set; }
     
     [Name("bid")]
     public double Bid { get; set; }
@@ -49,33 +49,33 @@ public class HistoricOption
     public int Volume { get; set; }
     
     [Name("openinterest")]
-    public int Openinterest { get; set; }
+    public int OpenInterest { get; set; }
     
     [Name("impliedvol")]
-    public double Impliedvol { get; set; }
+    public float ImpliedVolatility { get; set; }
     
     [Name("delta")]
-    public double Delta { get; set; }
+    public float Delta { get; set; }
     
     [Name("gamma")]
-    public double Gamma { get; set; }
+    public float Gamma { get; set; }
     
     [Name("theta")]
-    public double Theta { get; set; }
+    public float Theta { get; set; }
     
     [Name("vega")]
-    public double Vega { get; set; }
+    public float Vega { get; set; }
     
     [Name("optionalias")]
     public string OptionAlias { get; set; } = string.Empty;
     
     [Name("IVBid")]
-    public double IVBid { get; set; }
+    public float IVBid { get; set; }
     
     [Name("IVAsk")]
-    public double IVAsk { get; set; }
+    public float IVAsk { get; set; }
 
-    public int DaysToExpiration => Math.Max(0, (Expiration - QuoteDate).Days);
+    public int DaysToExpiration => Math.Max(0, (ExpirationDate - QuoteDate).Days);
 }
 
 
