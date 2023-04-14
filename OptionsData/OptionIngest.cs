@@ -29,7 +29,7 @@ public class OptionIngest
         ContractName = option.OptionAlias;
         QuoteDate = option.QuoteDate;
         ExpirationDate = option.ExpirationDate;
-        ContractType = option.ContractType;
+        ContractType = option.ContractType.ToUpper();
         Strike = option.Strike;
         LastPrice = option.LastPrice; 
         Bid = option.Bid; 
