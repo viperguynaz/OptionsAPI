@@ -9,7 +9,7 @@ namespace OptionsApi;
 public class EodOptions
 {
     // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
-    public class Call
+    public class Option
     {
         [JsonPropertyName("contractName")]
         public string ContractName { get; set; }
@@ -60,25 +60,25 @@ public class EodOptions
         public int? OpenInterest { get; set; }
 
         [JsonPropertyName("impliedVolatility")]
-        public double? ImpliedVolatility { get; set; }
+        public float? ImpliedVolatility { get; set; }
 
         [JsonPropertyName("delta")]
-        public double? Delta { get; set; }
+        public float? Delta { get; set; }
 
         [JsonPropertyName("gamma")]
-        public double? Gamma { get; set; }
+        public float? Gamma { get; set; }
 
         [JsonPropertyName("theta")]
-        public double? Theta { get; set; }
+        public float? Theta { get; set; }
 
         [JsonPropertyName("vega")]
-        public double? Vega { get; set; }
+        public float? Vega { get; set; }
 
         [JsonPropertyName("rho")]
-        public double? Rho { get; set; }
+        public float? Rho { get; set; }
 
         [JsonPropertyName("theoretical")]
-        public double? Theoretical { get; set; }
+        public float? Theoretical { get; set; }
 
         [JsonPropertyName("intrinsicValue")]
         public double? IntrinsicValue { get; set; }
@@ -129,95 +129,95 @@ public class EodOptions
     public class Options
     {
         [JsonPropertyName("Call")]
-        public List<Call> Call { get; set; }
+        public List<Option> Calls { get; set; }
 
         [JsonPropertyName("Put")]
-        public List<Put> Put { get; set; }
+        public List<Option> Puts { get; set; }
     }
 
-    public class Put
-    {
-        [JsonPropertyName("contractName")]
-        public string ContractName { get; set; }
+    //public class Put
+    //{
+    //    [JsonPropertyName("contractName")]
+    //    public string ContractName { get; set; }
 
-        [JsonPropertyName("contractSize")]
-        public string ContractSize { get; set; }
+    //    [JsonPropertyName("contractSize")]
+    //    public string ContractSize { get; set; }
 
-        [JsonPropertyName("contractPeriod")]
-        public string ContractPeriod { get; set; }
+    //    [JsonPropertyName("contractPeriod")]
+    //    public string ContractPeriod { get; set; }
 
-        [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+    //    [JsonPropertyName("currency")]
+    //    public string Currency { get; set; }
 
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
+    //    [JsonPropertyName("type")]
+    //    public string Type { get; set; }
 
-        [JsonPropertyName("inTheMoney")]
-        public string InTheMoney { get; set; }
+    //    [JsonPropertyName("inTheMoney")]
+    //    public string InTheMoney { get; set; }
 
-        [JsonPropertyName("lastTradeDateTime")]
-        public string LastTradeDateTime { get; set; }
+    //    [JsonPropertyName("lastTradeDateTime")]
+    //    public string LastTradeDateTime { get; set; }
 
-        [JsonPropertyName("expirationDate")]
-        public string ExpirationDate { get; set; }
+    //    [JsonPropertyName("expirationDate")]
+    //    public string ExpirationDate { get; set; }
 
-        [JsonPropertyName("strike")]
-        public double? Strike { get; set; }
+    //    [JsonPropertyName("strike")]
+    //    public double? Strike { get; set; }
 
-        [JsonPropertyName("lastPrice")]
-        public double? LastPrice { get; set; }
+    //    [JsonPropertyName("lastPrice")]
+    //    public double? LastPrice { get; set; }
 
-        [JsonPropertyName("bid")]
-        public double? Bid { get; set; }
+    //    [JsonPropertyName("bid")]
+    //    public double? Bid { get; set; }
 
-        [JsonPropertyName("ask")]
-        public double? Ask { get; set; }
+    //    [JsonPropertyName("ask")]
+    //    public double? Ask { get; set; }
 
-        [JsonPropertyName("change")]
-        public double? Change { get; set; }
+    //    [JsonPropertyName("change")]
+    //    public double? Change { get; set; }
 
-        [JsonPropertyName("changePercent")]
-        public double? ChangePercent { get; set; }
+    //    [JsonPropertyName("changePercent")]
+    //    public double? ChangePercent { get; set; }
 
-        [JsonPropertyName("volume")]
-        public int? Volume { get; set; }
+    //    [JsonPropertyName("volume")]
+    //    public int? Volume { get; set; }
 
-        [JsonPropertyName("openInterest")]
-        public int? OpenInterest { get; set; }
+    //    [JsonPropertyName("openInterest")]
+    //    public int? OpenInterest { get; set; }
 
-        [JsonPropertyName("impliedVolatility")]
-        public double? ImpliedVolatility { get; set; }
+    //    [JsonPropertyName("impliedVolatility")]
+    //    public double? ImpliedVolatility { get; set; }
 
-        [JsonPropertyName("delta")]
-        public double? Delta { get; set; }
+    //    [JsonPropertyName("delta")]
+    //    public double? Delta { get; set; }
 
-        [JsonPropertyName("gamma")]
-        public double? Gamma { get; set; }
+    //    [JsonPropertyName("gamma")]
+    //    public double? Gamma { get; set; }
 
-        [JsonPropertyName("theta")]
-        public double? Theta { get; set; }
+    //    [JsonPropertyName("theta")]
+    //    public double? Theta { get; set; }
 
-        [JsonPropertyName("vega")]
-        public double? Vega { get; set; }
+    //    [JsonPropertyName("vega")]
+    //    public double? Vega { get; set; }
 
-        [JsonPropertyName("rho")]
-        public double? Rho { get; set; }
+    //    [JsonPropertyName("rho")]
+    //    public double? Rho { get; set; }
 
-        [JsonPropertyName("theoretical")]
-        public double? Theoretical { get; set; }
+    //    [JsonPropertyName("theoretical")]
+    //    public double? Theoretical { get; set; }
 
-        [JsonPropertyName("intrinsicValue")]
-        public double? IntrinsicValue { get; set; }
+    //    [JsonPropertyName("intrinsicValue")]
+    //    public double? IntrinsicValue { get; set; }
 
-        [JsonPropertyName("timeValue")]
-        public double? TimeValue { get; set; }
+    //    [JsonPropertyName("timeValue")]
+    //    public double? TimeValue { get; set; }
 
-        [JsonPropertyName("updatedAt")]
-        public string UpdatedAt { get; set; }
+    //    [JsonPropertyName("updatedAt")]
+    //    public string UpdatedAt { get; set; }
 
-        [JsonPropertyName("daysBeforeExpiration")]
-        public int? DaysBeforeExpiration { get; set; }
-    }
+    //    [JsonPropertyName("daysBeforeExpiration")]
+    //    public int? DaysBeforeExpiration { get; set; }
+    //}
 
     public class EodOptionsResponse
     {
