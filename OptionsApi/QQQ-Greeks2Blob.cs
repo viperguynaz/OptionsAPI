@@ -35,9 +35,9 @@ namespace OptionsApi
             for (int i = 0; i < greeksResponse.Data.Count; i++)
             {
                 if (greeksResponse.Data[i].Options.Calls != null)
-                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Select(o => new OptionIngest(o)));
+                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Select(o => new OptionIngest(o, (double)greeksResponse.LastTradePrice)));
                 if (greeksResponse.Data[i].Options.Puts != null)
-                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Select(o => new OptionIngest(o)));
+                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Select(o => new OptionIngest(o, (double)greeksResponse.LastTradePrice)));
             }
 
             return JsonSerializer.Serialize(optionList);

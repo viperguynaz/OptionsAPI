@@ -26,13 +26,13 @@ public class OptionIngest
     public float Theta { get; set;}
     public float Vega { get; set; }
     public double UnderlyingLast { get; set; }
-    public OptionIngest(EodOptions.Option option, double underlyingPrice = 0.00)
+    public OptionIngest(EodOptions.Option option, double underlyingPrice = 0.0)
     {
         ContractName = option.ContractName;
         QuoteDate = DateTime.Parse(option.UpdatedAt).Date;
         ExpirationDate = DateTime.Parse(option.ExpirationDate).Date;
         ContractType = option.Type.ToUpper();
-        Strike = option.Strike.HasValue ? option.Strike.Value : 0;
+        Strike = option.Strike.HasValue ? option.Strike.Value : 0.0;
         LastPrice = option.LastPrice.HasValue ? option.LastPrice.Value : 0;
         Bid = option.Bid.HasValue ? option.Bid.Value : 0;
         Ask = option.Ask.HasValue ? option.Ask.Value : 0;
@@ -65,4 +65,5 @@ public class OptionIngest
         UnderlyingLast = option.UnderlyingLast;
     }
 }
+
 
