@@ -33,11 +33,6 @@ namespace OptionsApi
 
             var optionsResponse = await client.GetFromJsonAsync<YahooResponse>(url);
 
-            //return new HttpResponseMessage(HttpStatusCode.OK)
-            //{
-            //    Content = new StringContent(JsonSerializer.Serialize(optionsResponse), Encoding.UTF8, "application/json")
-            //};
-
             var response = req.CreateResponse(HttpStatusCode.OK);
             response.Headers.Add("Content-Type", "application/json; charset=utf-8");
 

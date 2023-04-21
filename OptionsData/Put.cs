@@ -4,14 +4,14 @@ namespace OptionsApi;
 public class Put
 {
     [JsonPropertyName("contractSymbol")]
-    public string ContractSymbol { get; set; }
+    public string ContractSymbol { get; set; } = string.Empty;
 
     [JsonPropertyName("strike")]
     public double Strike { get; set; }
 
     [JsonIgnore]
     [JsonPropertyName("currency")]
-    public string Currency { get; set; }
+    public string Currency { get; set; } = string.Empty;
 
     [JsonPropertyName("lastPrice")]
     public double LastPrice { get; set; }
@@ -37,7 +37,7 @@ public class Put
 
     [JsonIgnore]
     [JsonPropertyName("contractSize")]
-    public string ContractSize { get; set; }
+    public string ContractSize { get; set; } = string.Empty;
 
     [JsonPropertyName("expiration")]
     public int Expiration { get; set; }
@@ -54,6 +54,6 @@ public class Put
     public bool InTheMoney { get; set; }
 
     [JsonPropertyName("volume")]
-    public int? Volume { get; set; }
+    public int Volume { get; set; }
 }
 

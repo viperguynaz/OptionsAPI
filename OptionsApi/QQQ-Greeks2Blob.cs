@@ -13,8 +13,6 @@ namespace OptionsApi
         private const string urlBase = "https://eodhistoricaldata.com/api";
         private const string apiKey = "623b75cf0a9c85.30775135";
         private static readonly HttpClient client = new();
-        Uri containerUri = new("https://viperoptions.blob.core.windows.net/qqq-options-historic");
-
 
         public Greeks2Blob(ILoggerFactory loggerFactory)
         {
@@ -35,9 +33,9 @@ namespace OptionsApi
             for (int i = 0; i < greeksResponse.Data.Count; i++)
             {
                 if (greeksResponse.Data[i].Options.Calls != null)
-                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Select(o => new OptionIngest(o, (double)greeksResponse.LastTradePrice)));
+                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Select(o => new OptionIngest(o)));
                 if (greeksResponse.Data[i].Options.Puts != null)
-                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Select(o => new OptionIngest(o, (double)greeksResponse.LastTradePrice)));
+                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Select(o => new OptionIngest(o)));
             }
 
             return JsonSerializer.Serialize(optionList);
