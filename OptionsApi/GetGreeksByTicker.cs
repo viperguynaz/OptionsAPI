@@ -40,9 +40,9 @@ namespace OptionsApi
             for (int i = 0; i < greeksResponse.Data.Count; i++)
             {
                 if (greeksResponse.Data[i].Options.Calls != null) 
-                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Select(o => new OptionIngest(o)));
+                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Where(o => o.DaysBeforeExpiration < 91 && DateTime.Parse(o.ExpirationDate).DayOfWeek == DayOfWeek.Friday).Select(o => new OptionIngest(o)));
                 if (greeksResponse.Data[i].Options.Puts != null)
-                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Select(o => new OptionIngest(o)));
+                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Where(o => o.DaysBeforeExpiration < 91 && DateTime.Parse(o.ExpirationDate).DayOfWeek == DayOfWeek.Friday).Select(o => new OptionIngest(o)));
             }
 
             var response = req.CreateResponse(HttpStatusCode.OK);
