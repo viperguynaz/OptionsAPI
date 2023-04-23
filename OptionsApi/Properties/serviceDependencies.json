@@ -10,14 +10,12 @@
       "connectionId": "options-storage",
       "dynamicId": null
     },
+    "secrets2": {
+      "type": "secrets"
+    },
     "appInsights1": {
       "type": "appInsights",
       "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING",
-      "dynamicId": null
-    },
-    "secrets2": {
-      "type": "secrets",
-      "connectionId": "VaultUri",
       "dynamicId": null
     }
   }

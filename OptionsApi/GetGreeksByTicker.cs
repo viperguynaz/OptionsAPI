@@ -1,12 +1,10 @@
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Reflection;
-using System.Text;
 using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using OptionsData;
 using static OptionsApi.EodOptions;
 
 namespace OptionsApi
@@ -25,12 +23,11 @@ namespace OptionsApi
 
         [Function("GetGreeksByTicker")]
         public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous,
-            "get",
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get",
             Route = "GetGreeksByTicker/{ticker:alpha:required}")] HttpRequestData req,
             string ticker, DateTime? from = null, DateTime? to = null)
         {
-            _logger.LogInformation($"request for Ticker: {ticker}");
+            _logger.LogInformation("request for Ticker: {ticker}", ticker);
             var url = $"{urlBase}/options/{ticker}.US?api_token={apiKey}&fmt=json";
             if (from.HasValue && to.HasValue)
             {
@@ -39,42 +36,18 @@ namespace OptionsApi
 
             var greeksResponse = await client.GetFromJsonAsync<EodOptionsResponse>(url);
 
-            var csv = new StringBuilder();
-
-            foreach (PropertyInfo prop in greeksResponse.Data[0]?.Options.Put[0].GetType().GetProperties())
+            List<OptionIngest> optionList = new();
+            for (int i = 0; i < greeksResponse.Data.Count; i++)
             {
-                csv.AppendFormat("{0}, ", prop.Name);
-            }
-            csv.Remove(csv.Length - 2, 2);
-            csv.AppendLine();
-            foreach(var datum in greeksResponse.Data)
-            {
-                foreach (var put in datum.Options.Put ?? new List<EodOptions.Put>())
-                {
-                    foreach (PropertyInfo prop in put.GetType().GetProperties())
-                    {
-                        var type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-                        if (type == typeof(double?))
-                        {
-                            csv.AppendFormat("{0, 0.0}, ", prop.GetValue(put));
-                        } else if (type == typeof(int?))
-                        {
-                            csv.AppendFormat("{0, 0}, ", prop.GetValue(put));
-                        } else 
-                        {
-                            var x = prop.GetValue(put);
-                            csv.AppendFormat("{0}, ", x);
-                        }
-
-                    }
-                    csv.Remove(csv.Length - 2, 2);
-                    csv.AppendLine();
-                }
+                if (greeksResponse.Data[i].Options.Calls != null) 
+                    optionList.AddRange(greeksResponse.Data[i].Options.Calls.Select(o => new OptionIngest(o)));
+                if (greeksResponse.Data[i].Options.Puts != null)
+                    optionList.AddRange(greeksResponse.Data[i].Options.Puts.Select(o => new OptionIngest(o)));
             }
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/csv; charset=utf-8");
-            response.WriteString(csv.ToString());
+            response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+            response.WriteString(JsonSerializer.Serialize(optionList));
             return response;
         }
     }
