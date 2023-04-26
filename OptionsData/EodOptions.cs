@@ -12,110 +12,110 @@ public class EodOptions
         [JsonPropertyName("contractSize")]
         public string ContractSize { get; set; } = string.Empty;
 
-        [JsonPropertyName("contractPeriod")] 
+        [JsonPropertyName("contractPeriod")]
         public string ContractPeriod { get; set; } = string.Empty;
 
-        [JsonPropertyName("currency")] 
+        [JsonPropertyName("currency")]
         public string Currency { get; set; } = string.Empty;
 
-        [JsonPropertyName("type")] 
+        [JsonPropertyName("type")]
         public string Type { get; set; } = string.Empty;
 
-        [JsonPropertyName("inTheMoney")] 
+        [JsonPropertyName("inTheMoney")]
         public string InTheMoney { get; set; } = string.Empty;
 
-        [JsonPropertyName("lastTradeDateTime")] 
+        [JsonPropertyName("lastTradeDateTime")]
         public string LastTradeDateTime { get; set; } = string.Empty;
 
-        [JsonPropertyName("expirationDate")] 
+        [JsonPropertyName("expirationDate")]
         public string ExpirationDate { get; set; } = string.Empty;
 
         [JsonPropertyName("strike")]
-        public double Strike { get; set; }
+        public double? Strike { get; set; }
 
         [JsonPropertyName("lastPrice")]
-        public double LastPrice { get; set; }
+        public double? LastPrice { get; set; }
 
         [JsonPropertyName("bid")]
-        public double Bid { get; set; }
+        public double? Bid { get; set; }
 
         [JsonPropertyName("ask")]
-        public double Ask { get; set; }
+        public double? Ask { get; set; }
 
         [JsonPropertyName("change")]
-        public double Change { get; set; }
+        public double? Change { get; set; }
 
         [JsonPropertyName("changePercent")]
-        public double ChangePercent { get; set; }
+        public float? ChangePercent { get; set; }
 
         [JsonPropertyName("volume")]
-        public int Volume { get; set; }
+        public int? Volume { get; set; }
 
         [JsonPropertyName("openInterest")]
-        public int OpenInterest { get; set; }
+        public int? OpenInterest { get; set; }
 
         [JsonPropertyName("impliedVolatility")]
-        public float ImpliedVolatility { get; set; }
+        public float? ImpliedVolatility { get; set; }
 
         [JsonPropertyName("delta")]
-        public float Delta { get; set; }
+        public float? Delta { get; set; }
 
         [JsonPropertyName("gamma")]
-        public float Gamma { get; set; }
+        public float? Gamma { get; set; }
 
         [JsonPropertyName("theta")]
-        public float Theta { get; set; }
+        public float? Theta { get; set; }
 
         [JsonPropertyName("vega")]
-        public float Vega { get; set; }
+        public float? Vega { get; set; }
 
         [JsonPropertyName("rho")]
-        public float Rho { get; set; }
+        public float? Rho { get; set; }
 
         [JsonPropertyName("theoretical")]
-        public float Theoretical { get; set; }
+        public float? Theoretical { get; set; }
 
         [JsonPropertyName("intrinsicValue")]
-        public double IntrinsicValue { get; set; }
+        public double? IntrinsicValue { get; set; }
 
         [JsonPropertyName("timeValue")]
-        public double TimeValue { get; set; }
+        public double? TimeValue { get; set; }
 
-        [JsonPropertyName("updatedAt")] 
+        [JsonPropertyName("updatedAt")]
         public string UpdatedAt { get; set; } = string.Empty;
 
         [JsonPropertyName("daysBeforeExpiration")]
-        public int DaysBeforeExpiration { get; set; }
+        public int? DaysBeforeExpiration { get; set; }
     }
 
     public class Data
     {
-        [JsonPropertyName("expirationDate")] 
+        [JsonPropertyName("expirationDate")]
         public string ExpirationDate { get; set; } = string.Empty;
 
         [JsonPropertyName("impliedVolatility")]
-        public double ImpliedVolatility { get; set; }
+        public float? ImpliedVolatility { get; set; }
 
         [JsonPropertyName("putVolume")]
-        public int PutVolume { get; set; }
+        public int? PutVolume { get; set; }
 
         [JsonPropertyName("callVolume")]
-        public int CallVolume { get; set; }
+        public int? CallVolume { get; set; }
 
         [JsonPropertyName("putCallVolumeRatio")]
-        public double PutCallVolumeRatio { get; set; }
+        public float? PutCallVolumeRatio { get; set; }
 
         [JsonPropertyName("putOpenInterest")]
-        public int PutOpenInterest { get; set; }
+        public int? PutOpenInterest { get; set; }
 
         [JsonPropertyName("callOpenInterest")]
-        public int CallOpenInterest { get; set; }
+        public int? CallOpenInterest { get; set; }
 
         [JsonPropertyName("putCallOpenInterestRatio")]
-        public double PutCallOpenInterestRatio { get; set; }
+        public float? PutCallOpenInterestRatio { get; set; }
 
         [JsonPropertyName("optionsCount")]
-        public int OptionsCount { get; set; }
+        public int? OptionsCount { get; set; }
 
         [JsonPropertyName("options")]
         public Options Options { get; set; } = new Options();
@@ -123,7 +123,7 @@ public class EodOptions
 
     public class Options
     {
-        [JsonPropertyName("Call")] 
+        [JsonPropertyName("Call")]
         public List<Option> Calls { get; set; } = new List<Option>();
 
         [JsonPropertyName("Put")]
@@ -132,20 +132,20 @@ public class EodOptions
 
     public class EodOptionsResponse
     {
-        [JsonPropertyName("code")] 
+        [JsonPropertyName("code")]
         public string Code { get; set; } = string.Empty;
 
-        [JsonPropertyName("exchange")] 
+        [JsonPropertyName("exchange")]
         public string Exchange { get; set; } = string.Empty;
 
-        [JsonPropertyName("lastTradeDate")] 
+        [JsonPropertyName("lastTradeDate")]
         public string LastTradeDate { get; set; } = string.Empty;
 
         [JsonPropertyName("lastTradePrice")]
-        public double LastTradePrice { get; set; }
+        public double? LastTradePrice { get; set; }
 
         [JsonPropertyName("data")]
-        public List<Data> Data { get; set; } = new List<Data>();    
+        public List<Data> Data { get; set; } = new List<Data>();
     }
 
 
