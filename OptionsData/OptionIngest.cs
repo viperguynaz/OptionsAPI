@@ -26,18 +26,17 @@ public class OptionIngest
         QuoteDate = DateTime.Parse(option.UpdatedAt).Date;
         ExpirationDate = DateTime.Parse(option.ExpirationDate).Date;
         ContractType = option.Type.ToUpper();
-        Strike = option.Strike.HasValue ? option.Strike.Value : 0.0;
-        LastPrice = option.LastPrice.HasValue ? option.LastPrice.Value : 0;
-        Bid = option.Bid.HasValue ? option.Bid.Value : 0;
-        Ask = option.Ask.HasValue ? option.Ask.Value : 0;
-        Volume = option.Volume.HasValue ? option.Volume.Value : 0;
-        OpenInterest = option.OpenInterest.HasValue ? option.OpenInterest.Value : 0;
-        ImpliedVolatility = option.ImpliedVolatility.HasValue ? option.ImpliedVolatility.Value : 0;
-        Delta = option.Delta.HasValue ? option.Delta.Value : 0;
-        Gamma = option.Gamma.HasValue ? option.Gamma.Value : 0;
-        Theta = option.Theta.HasValue ? option.Theta.Value : 0;
-        Vega = option.Vega.HasValue ? option.Vega.Value : 0;
-        UnderlyingLast = underlyingPrice;
+        Strike = option.Strike ?? 0;
+        LastPrice = option.LastPrice ?? 0;
+        Bid = option.Bid ?? 0;
+        Ask = option.Ask ?? 0;
+        Volume = option.Volume ?? 0;
+        OpenInterest = option.OpenInterest ?? 0;
+        ImpliedVolatility = option.ImpliedVolatility ?? 0;
+        Delta = option.Delta ?? 0;
+        Gamma = option.Gamma ?? 0;
+        Theta = option.Theta ?? 0;
+        Vega = option.Vega ?? 0;
     }
     public OptionIngest(HistoricOption option)
     {
