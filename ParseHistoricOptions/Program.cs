@@ -2,52 +2,53 @@
 using System.Globalization;
 using OptionsData;
 using CsvHelper.Configuration;
-using Azure.Identity;
-using Azure.Storage.Blobs;
-using System.IO.Compression;
+using static ParseHistoricOptions.Startup;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Processing Historic Option Data...");
 
 string symbol = "SPY";
-string directoryPath = "C:\\Options-Historic\\SPY";
+string directoryPath = $"C:\\Options-Historic\\{symbol}";
 
 var config = new CsvConfiguration(CultureInfo.InvariantCulture)
 {
     MissingFieldFound = null
 };
 
-for (int year = 2005; year < 2024; year++)
+var ndx = 0;
+var dbContextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+    .UseSqlServer(@"Data Source=(localdb)\ProjectModels;Initial Catalog=optiongreeks;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+    .Options;
+using var context = new ApplicationDbContext(dbContextOptions);
+for (int year = 2018; year < 2024; year++)
 {
+    Console.WriteLine($"processing {symbol} year {year}...");
     string inputFileName = $"{symbol}_{year}.csv";
-    string outputFileName = $"{symbol}-{year}-ingest.csv";
-    Console.WriteLine($"processing SPY {year}...");
-    using (var reader = new StreamReader($"{directoryPath}\\{inputFileName}"))
-    using (var csv = new CsvReader(reader, config))
-    {
-        csv.Read();
-        csv.ReadHeader();
-        using var writer = new StreamWriter($"{directoryPath}\\{outputFileName}");
-        using var csvout = new CsvWriter(writer, CultureInfo.InvariantCulture);
-        csvout.WriteHeader<OptionIngest>();
-        csvout.NextRecord();
 
-        while (csv.Read())
+    using var reader = new StreamReader($"{directoryPath}\\{inputFileName}");
+    using var csv = new CsvReader(reader, config);
+    csv.Read();
+    csv.ReadHeader();
+
+    while (csv.Read())
+    {
+        var record = csv.GetRecord<HistoricOption>();
+        if (record != null && record.ContractType.ToLower() == "put")
         {
-            var record = csv.GetRecord<HistoricOption>();
-            if (record != null)
+            var option = new OptionIngest(record);
+            context.Add(option);
+            ndx++;
+            if (ndx % 10000 == 0)
             {
-                csvout.WriteRecord(new OptionIngest(record));
-                csvout.NextRecord();
+                context.SaveChanges();
+                Console.WriteLine($"... {ndx} saved");
             }
         }
-
-        csvout.Flush();
     }
-
-    using FileStream fs = new FileStream($"{directoryPath}\\{symbol}-{year}-ingest.zip", FileMode.Create);
-    using ZipArchive arch = new ZipArchive(fs, ZipArchiveMode.Create);
-    arch.CreateEntryFromFile($"{directoryPath}\\{outputFileName}", outputFileName);
+    context.SaveChanges();
 }
+
+Console.WriteLine($"DONE processing {symbol}!");
 
 
 

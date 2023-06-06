@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionsData", "OptionsData\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseHistoricOptions", "ParseHistoricOptions\ParseHistoricOptions.csproj", "{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadUnderlyingQuotes", "LoadUnderlyingQuotes\LoadUnderlyingQuotes.csproj", "{A2638682-AAA4-49F1-9A84-C623636D1718}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEC9C1D7-D0FC-4D69-A7E1-D01B64873501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2638682-AAA4-49F1-9A84-C623636D1718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2638682-AAA4-49F1-9A84-C623636D1718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2638682-AAA4-49F1-9A84-C623636D1718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2638682-AAA4-49F1-9A84-C623636D1718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
